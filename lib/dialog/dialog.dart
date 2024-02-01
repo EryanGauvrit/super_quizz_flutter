@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../helpers/navigationHelpers.dart';
 import '../pages/question.dart';
 
+
+/***********    Try to open dialog from an other file but it's not work     **********/
+
 SimpleDialog showResponseDialog({
   required String title,
   required String response,

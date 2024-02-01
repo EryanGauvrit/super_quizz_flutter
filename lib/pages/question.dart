@@ -19,6 +19,7 @@ class QuestionPage extends StatelessWidget {
     Question question = questionData.questionList[nbrQuestion];
     NavigatorHelper navigatorHelper = NavigatorHelper();
 
+    /***********     End Game Dialog     **********/
     SimpleDialog showEndGameDialog({
       required int score,
       // required BuildContext context
@@ -57,7 +58,9 @@ class QuestionPage extends StatelessWidget {
         ],
       );
     }
+    /***********   end of  End Game Dialog     **********/
 
+    /***********    Open End Game Dialog function     **********/
     Future<void> sendEnGameDialog () async {
       await showDialog(
           barrierDismissible: false,
@@ -70,7 +73,9 @@ class QuestionPage extends StatelessWidget {
           }
       );
     }
+    /***********     end of Open End Game Dialog function     **********/
 
+    /***********    Response Dialog     **********/
     SimpleDialog showResponseDialog({
       required String title,
       required String response,
@@ -88,14 +93,13 @@ class QuestionPage extends StatelessWidget {
               fontWeight: FontWeight.bold
           ),
         ),
-        contentPadding: const EdgeInsetsDirectional.all(25),
         elevation: 12,
         alignment: AlignmentDirectional.center,
         children: [
           Image.asset(
             media,
             width: 400.0,
-            height: 300.0,
+            height: 200.0,
             fit: BoxFit.fitWidth,
           ),
           Text(
@@ -118,6 +122,9 @@ class QuestionPage extends StatelessWidget {
       );
     }
 
+    /***********    end of Response Dialog     **********/
+
+    /***********    Open Response Dialog function     **********/
     Future<void> sendResponse (bool userResponse) async {
       if(question.response == userResponse){
         await showDialog(
@@ -151,6 +158,7 @@ class QuestionPage extends StatelessWidget {
         );
       }
     }
+    /***********    end of Open Response Dialog function     **********/
 
     return Scaffold(
       appBar: AppBar(
@@ -174,10 +182,10 @@ class QuestionPage extends StatelessWidget {
               ),
             ),
             CircleAvatar(
-                radius: 155,
+                radius: 185,
                 backgroundColor: Colors.blueGrey,
                 child: CircleAvatar(
-                    radius: 150,
+                    radius: 180,
                     backgroundImage: AssetImage(question.imagePath)
                 ),
             ),
@@ -197,23 +205,30 @@ class QuestionPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FloatingActionButton(
+                  ElevatedButton(
                     onPressed: () {
                       sendResponse(true);
                     },
-                    backgroundColor: Colors.green,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 35, vertical: 15)
+                    ),
                     child: const Text(
                         "Vrai !",
                         style: TextStyle(
-                            color: Colors.white
+                            color: Colors.white,
+
                         )
                     ),
                   ),
-                  FloatingActionButton(
+                  ElevatedButton(
                     onPressed: () {
                       sendResponse(false);
                     },
-                    backgroundColor: Colors.red,
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        padding: const EdgeInsetsDirectional.symmetric(horizontal: 35, vertical: 15)
+                    ),
                     child: const Text(
                         "Faux !",
                         style: TextStyle(
